@@ -21,3 +21,66 @@ www - смотрит на обоих клиентов
 *) настроить все без выключения selinux
 ```
 
+### Проверка функционирования DNS зон
+
+Узел - client
+```
+[vagrant@client ~]$ nslookup web1.dns.lab 192.168.50.10
+Server:		192.168.50.10
+Address:	192.168.50.10#53
+
+Name:	web1.dns.lab
+Address: 192.168.50.15
+[vagrant@client ~]$ nslookup web1.dns.lab 192.168.50.11
+Server:		192.168.50.11
+Address:	192.168.50.11#53
+
+Name:	web1.dns.lab
+Address: 192.168.50.15
+```
+
+```
+[vagrant@client ~]$ nslookup newdns.lab 192.168.50.10
+Server:		192.168.50.10
+Address:	192.168.50.10#53
+
+Name:	newdns.lab
+Address: 192.168.50.10
+Name:	newdns.lab
+Address: 192.168.50.11
+[vagrant@client ~]$ nslookup newdns.lab 192.168.50.11
+Server:		192.168.50.11
+Address:	192.168.50.11#53
+
+Name:	newdns.lab
+Address: 192.168.50.10
+Name:	newdns.lab
+Address: 192.168.50.11
+```
+
+```
+[vagrant@client ~]$ nslookup www.newdns.lab 192.168.50.10
+Server:		192.168.50.10
+Address:	192.168.50.10#53
+
+Name:	www.newdns.lab
+Address: 192.168.50.16
+Name:	www.newdns.lab
+Address: 192.168.50.15
+[vagrant@client ~]$ nslookup www.newdns.lab 192.168.50.11
+Server:		192.168.50.11
+Address:	192.168.50.11#53
+
+Name:	www.newdns.lab
+Address: 192.168.50.15
+Name:	www.newdns.lab
+Address: 192.168.50.16
+```
+
+
+
+
+
+
+
+
